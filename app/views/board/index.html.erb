@@ -1,0 +1,30 @@
+<head>
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<h1 class="text-center">CRUD 연습 게시판</h1>
+<div class="create_form">
+	<form action="/create" method="post">
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />
+		제목: <input type="text" id="title" name="title" /><br />
+		내용: <input type="text" id="content" name="content" /><br />
+		<input type="submit" value="Submit" />
+	</form>
+</div>
+
+<% @posts.all.each do |post| %>
+<hr />
+<h3>
+	<%= post.title %>
+</h3>
+<h3>
+	<%= post.content %>
+</h3>
+<a class="button" href="/edit?id=<%= post.id%>">
+	수정하기
+</a>
+<a class="button" href="/delete?id=<%= post.id%>">
+	삭제하기
+</a>
+<hr />
+<% end %>
